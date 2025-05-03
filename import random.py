@@ -5,7 +5,6 @@ import time    # To add delays between text outputs for dramatic effect
 def start_game():
     score = 0  # Initialize the player's score
 
-    # Introduction
     print("Welcome to the Magical Forest Adventure!")
     time.sleep(2)  # Pause for 2 seconds
     print("Your mission is to find the lost wizard. Your choices and luck will decide your fate.\n")
