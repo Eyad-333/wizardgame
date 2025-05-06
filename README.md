@@ -23,7 +23,7 @@ Your fate lies in your hands. Will you emerge a hero or fade into legend?
    ```bash
    python magical_forest_adventure.py
    ```
-3. 🗣️ Follow the on-screen instructions. Type your choices like `dark`, `bright`, `fight`, `run`, `yes`, or `no`.
+3. 🗣️ Follow the on-screen instructions. Type your choices like `temple`, `cave`, `eat`, `leave`, `y`, or `n`.
 4. ⏳ Watch the tale unfold with dramatic pauses and surprise encounters.
 5. 🏆 At the end, view your final score and decide if you're brave enough to try again.
 
