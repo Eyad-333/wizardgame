@@ -1,26 +1,26 @@
 import random
 import time
 
-# ثوابت اللعبة
-WIN_SCORE = 50  # النقاط المطلوبة للفوز
-MAX_TURNS = 10  # أقصى عدد دورات مسموح بها
+# Game constants
+WIN_SCORE = 50  # Points required to win
+MAX_TURNS = 10  # Maximum allowed turns
 
 def print_pause(text, delay=2):
-    """دالة لطباعة النص مع إضافة تأخير زمني"""
+    """Function to print text with a time delay"""
     print(text)
     time.sleep(delay)
 
 class GameState:
-    """فئة تتحكم في حالة اللعبة وتخزن متغيراتها"""
+    """Class to manage the game's state and store its variables"""
     def __init__(self):
-        """تهيئة حالة لعبة جديدة"""
+        """Initialize a new game state"""
         self.reset()
         
     def reset(self):
-        """إعادة ضبط جميع متغيرات اللعبة"""
-        self.score = 0  # نقاط اللاعب
-        self.turns_left = MAX_TURNS  # عدد الدورات المتبقية
-        self.visited_paths = {  # قاموس المسارات المزورة
+        """Reset all game variables"""
+        self.score = 0  # Player's score
+        self.turns_left = MAX_TURNS  # Number of turns left
+        self.visited_paths = {  # Dictionary of visited paths
             "left": False,
             "right": False,
             "cave": False,
@@ -28,7 +28,7 @@ class GameState:
         }
 
 def main():
-    """الدالة الرئيسية التي تدير دورة اللعبة"""
+    """Main function that runs the game loop"""
     print_pause("\n=== Welcome to the Magical Forest Adventure! ===")
     print_pause("You wake up in a mysterious forest...")
     print_pause("You look around and see four paths.")
@@ -41,7 +41,7 @@ def main():
             break
 
 def play_game(game):
-    """تتحكم في جلسة لعب واحدة كاملة"""
+    """Manages a full single game session"""
     while game.turns_left > 0 and game.score >= 0:
         print(f"\nCurrent score: {game.score}, Turns left: {game.turns_left}")
         
@@ -64,7 +64,7 @@ def play_game(game):
         print_pause("⏰ Game over! Ran out of turns! ⏰")
 
 def ask_restart():
-    """تسأل اللاعب إذا كان يريد اللعب مرة أخرى"""
+    """Asks the player if they want to play again"""
     while True:
         choice = input("Play again? (y/n): ").lower().strip()
         if choice == 'y':
@@ -75,7 +75,7 @@ def ask_restart():
         print("Invalid choice. Please type 'y' or 'n'.")
 
 def get_player_choice(game):
-    """تتعامل مع اختيار المسار من اللاعب"""
+    """Handles player's path choice"""
     available_paths = [k for k, v in game.visited_paths.items() if not v]
     
     if not available_paths:
@@ -94,7 +94,7 @@ def get_player_choice(game):
         print(f"Invalid choice. Please choose from: {', '.join(available_paths)}")
 
 def handle_path_choice(direction, game):
-    """توجه إلى دالة المسار المناسبة"""
+    """Redirects to the appropriate path function"""
     if direction is None:
         return
         
@@ -108,7 +108,7 @@ def handle_path_choice(direction, game):
         temple_path(game)
 
 def left_path(game):
-    """أحداث المسار الأيسر"""
+    """Events for the left path"""
     print_pause("\nYou find a locked treasure chest!")
     answer = input("Solve: 3 + 5 = ").strip()
     if answer == "8":
@@ -120,7 +120,7 @@ def left_path(game):
     game.turns_left -= 1
 
 def right_path(game):
-    """أحداث المسار الأيمن"""
+    """Events for the right path"""
     print_pause("\nYou meet a wizard who asks a riddle:")
     print_pause("Hint: It's something we use to write, but doesn't unlock anything.")
     answer = input("What has keys but no locks? ").strip().lower()
@@ -133,7 +133,7 @@ def right_path(game):
     game.turns_left -= 1
 
 def cave_path(game):
-    """أحداث مسار الكهف"""
+    """Events for the cave path"""
     print_pause("\nYou find a glowing mushroom in the cave.")
     choice = input("Do you want to eat it or leave it? (eat/leave): ").strip().lower()
     if choice == "eat":
@@ -148,7 +148,7 @@ def cave_path(game):
     game.turns_left -= 1
 
 def temple_path(game):
-    """أحداث مسار المعبد"""
+    """Events for the temple path"""
     print_pause("\nYou discover an ancient temple with a puzzle.")
     print_pause("Hint: This is a basic multiplication problem.")
     answer = input("Solve: 9 × 6 = ").strip()
@@ -161,7 +161,7 @@ def temple_path(game):
     game.turns_left -= 1
 
 def final_battle(game):
-    """المعركة النهائية"""
+    """The final battle"""
     print_pause("\n⚔️ You stand before the Dark Wizard, the final boss of your journey!")
     answer = input("What runs but never walks? hint! Water way: ").strip().lower()
     if answer == "river":
@@ -173,6 +173,3 @@ def final_battle(game):
 
 if __name__ == "__main__":
     main()
-
-
-
